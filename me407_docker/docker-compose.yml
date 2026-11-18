@@ -23,17 +23,19 @@ services:
     devices:
       - /dev/dri:/dev/dri
     volumes:
-      # X11 socket for RViz2 and MuJoCo GUI rendering
+      # 1. X11 socket so GUI apps (RViz2, MuJoCo Viewer) open on your PC screen
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
-      # Full ME407 repo mounted at identical path so Git submodule relative paths (.git/modules/6-Software) work natively
-      - /home/nacib/Desktop/ME407:/home/nacib/Desktop/ME407:rw
-      # Persistent colcon workspace (build, install, log) while /ros2_ws/src links to ME407/6-Software
+      # 2. Persistent colcon workspace (stores build/, install/, log/)
       - ./workspace:/ros2_ws:rw
-      # Live-shared YAML configuration files
+      # 3. Share the entire omn_software repo inside /ros2_ws/src/omn_software
+      - ..:/ros2_ws/src/omn_software:rw
+      # 4. Also mount the parent ME407 repo (if present) so Git submodule commands work inside Docker
+      - ../../..:/me407_repo:rw
+      # 5. Live-shared YAML configuration files
       - ./config:/site_config:rw
-      # Host SSH keys & Git identity so git clone / pull / push work seamlessly inside Docker
-      - /home/nacib/.ssh:/root/.ssh:ro
-      - /home/nacib/.gitconfig:/etc/gitconfig:ro
+      # 6. Host SSH keys & Git identity so git clone / pull / push work inside Docker
+      - ${HOME}/.ssh:/root/.ssh:ro
+      - ${HOME}/.gitconfig:/etc/gitconfig:ro
       - ${SSH_AUTH_SOCK:-/tmp}:/ssh-agent
     working_dir: /ros2_ws
     command: bash

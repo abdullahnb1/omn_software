@@ -11,22 +11,14 @@ if [ -f "/opt/mujoco_ws/install/setup.bash" ]; then
     source "/opt/mujoco_ws/install/setup.bash"
 fi
 
-# 3. Link /ros2_ws/src to the shared ME407/6-Software submodule folder
-mkdir -p /ros2_ws
-if [ -d "/home/nacib/Desktop/ME407/6-Software" ]; then
-    if [ ! -e "/ros2_ws/src" ] && [ ! -L "/ros2_ws/src" ]; then
-        ln -s /home/nacib/Desktop/ME407/6-Software /ros2_ws/src
-    elif [ -d "/ros2_ws/src" ] && [ ! -L "/ros2_ws/src" ] && [ -z "$(ls -A /ros2_ws/src)" ]; then
-        rmdir /ros2_ws/src
-        ln -s /home/nacib/Desktop/ME407/6-Software /ros2_ws/src
-    fi
-else
-    mkdir -p /ros2_ws/src
-fi
-
-# 4. Source user development workspace (if already built)
+# 3. Source user development workspace (if already built with colcon)
 if [ -f "/ros2_ws/install/setup.bash" ]; then
     source "/ros2_ws/install/setup.bash"
+fi
+
+# 4. Add mecanum_sim Python package to PYTHONPATH so it works immediately
+if [ -d "/ros2_ws/src/omn_software/mecanum_sim/src" ]; then
+    export PYTHONPATH="/ros2_ws/src/omn_software/mecanum_sim/src:/ros2_ws/src/omn_software/mecanum_sim:${PYTHONPATH}"
 fi
 
 # 5. Configure Git safe.directory so root inside container can operate on host-owned repos

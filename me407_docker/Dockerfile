@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3-pip \
     python3-venv \
     python3-dev \
+    python3-tk \
     python3-colcon-common-extensions \
     python3-colcon-mixin \
     python3-rosdep \
@@ -111,7 +112,7 @@ RUN apt-get update && \
 # 5. User Workspace, Config Files, and Entrypoint Setup
 # ==============================================================================
 ENV ROS_WS=/ros2_ws
-RUN mkdir -p ${ROS_WS} /site_config /home/nacib/Desktop/ME407/6-Software
+RUN mkdir -p ${ROS_WS}/src /site_config
 
 # Copy YAML configuration files into the container
 COPY config/ /site_config/
@@ -123,7 +124,8 @@ RUN chmod +x /entrypoint.sh
 # Auto-source environments in interactive bash sessions (e.g. docker exec)
 RUN echo "source /opt/ros/humble/setup.bash" >> /root/.bashrc && \
     echo "[ -f /opt/mujoco_ws/install/setup.bash ] && source /opt/mujoco_ws/install/setup.bash" >> /root/.bashrc && \
-    echo "[ -f /ros2_ws/install/setup.bash ] && source /ros2_ws/install/setup.bash" >> /root/.bashrc
+    echo "[ -f /ros2_ws/install/setup.bash ] && source /ros2_ws/install/setup.bash" >> /root/.bashrc && \
+    echo "export PYTHONPATH=/ros2_ws/src/omn_software/mecanum_sim/src:/ros2_ws/src/omn_software/mecanum_sim:\$PYTHONPATH" >> /root/.bashrc
 
 WORKDIR ${ROS_WS}
 ENTRYPOINT ["/entrypoint.sh"]
