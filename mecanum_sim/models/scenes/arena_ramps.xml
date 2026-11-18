@@ -1,0 +1,54 @@
+<mujocoinclude>
+  <worldbody>
+    <light diffuse=".8 .8 .8" pos="0 0 5" dir="0 0 -1" castshadow="true"/>
+    <geom name="floor" type="plane" size="4.0 4.0 0.1" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" material="grid_mat"/>
+
+    <!-- Perimeter Boundary Walls (8x8m) -->
+    <geom name="wall_n" type="box" pos="0 4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_s" type="box" pos="0 -4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_e" type="box" pos="4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_w" type="box" pos="-4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+
+    <!-- ======================================================== -->
+    <!-- NORTH OVERPASS BRIDGE & DUAL RAMPS (Y in [1.3, 2.7])     -->
+    <!-- Center Y = 2.0m, Width = 1.4m (half-width = 0.70m)       -->
+    <!-- ======================================================== -->
+    <!-- West Climb Ramp: length 1.6m (X in [-2.4, -0.8]), rises 0.0 to 0.08m (2.86 deg) -->
+    <geom name="ramp_climb" type="box" pos="-1.6 2.0 0.04" size="0.80 0.70 0.006" euler="0 -0.05 0" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.35 0.40 0.48 1"/>
+    <!-- Climb Ramp Curbs / Safety Edges -->
+    <geom name="ramp_climb_curb_l" type="box" pos="-1.6 2.72 0.065" size="0.80 0.02 0.03" euler="0 -0.05 0" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+    <geom name="ramp_climb_curb_r" type="box" pos="-1.6 1.28 0.065" size="0.80 0.02 0.03" euler="0 -0.05 0" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+
+    <!-- Elevated Bridge Plateau: X in [-0.8, +0.8], height 0.08m -->
+    <geom name="bridge_plateau" type="box" pos="0 2.0 0.04" size="0.80 0.70 0.04" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.25 0.32 0.40 1"/>
+    <!-- Plateau Side Guardrails -->
+    <geom name="bridge_rail_l" type="box" pos="0 2.72 0.11" size="0.80 0.02 0.04" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+    <geom name="bridge_rail_r" type="box" pos="0 1.28 0.11" size="0.80 0.02 0.04" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+
+    <!-- East Descent Ramp: length 1.6m (X in [+0.8, +2.4]), descends 0.08 to 0.0m -->
+    <geom name="ramp_descent" type="box" pos="1.6 2.0 0.04" size="0.80 0.70 0.006" euler="0 0.05 0" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.35 0.40 0.48 1"/>
+    <!-- Descent Ramp Curbs -->
+    <geom name="ramp_desc_curb_l" type="box" pos="1.6 2.72 0.065" size="0.80 0.02 0.03" euler="0 0.05 0" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+    <geom name="ramp_desc_curb_r" type="box" pos="1.6 1.28 0.065" size="0.80 0.02 0.03" euler="0 0.05 0" contype="1" conaffinity="1" rgba="0.95 0.65 0.15 1"/>
+
+    <!-- ======================================================== -->
+    <!-- SOUTH OBSTACLE & SLALOM LANE (Y in [-2.7, -1.3])         -->
+    <!-- Center Y = -2.0m, Width = 1.4m (half-width = 0.70m)      -->
+    <!-- ======================================================== -->
+    <!-- Speed Table / Hump at X = -2.4, Y = -2.0 (Height 12mm) -->
+    <geom name="speed_hump_w" type="box" pos="-2.4 -2.0 0.006" size="0.35 0.60 0.006" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.5 0.1 1"/>
+    <geom name="speed_hump_e" type="box" pos="2.4 -2.0 0.006" size="0.35 0.60 0.006" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.5 0.1 1"/>
+
+    <!-- Slalom Agility Pylons at X = -1.0, 0.0, 1.0, Y = -2.0 -->
+    <geom name="pylon_1" type="cylinder" pos="-1.0 -2.0 0.20" size="0.12 0.20" contype="1" conaffinity="1" rgba="0.15 0.70 0.65 0.9"/>
+    <geom name="pylon_2" type="cylinder" pos="0.0 -2.0 0.20" size="0.12 0.20" contype="1" conaffinity="1" rgba="0.15 0.70 0.65 0.9"/>
+    <geom name="pylon_3" type="cylinder" pos="1.0 -2.0 0.20" size="0.12 0.20" contype="1" conaffinity="1" rgba="0.15 0.70 0.65 0.9"/>
+
+    <!-- Transverse Rumble Strips (Height 6mm, spacing 0.25m, at Y = -2.0) -->
+    <geom name="rumble_1" type="box" pos="-0.50 -2.0 0.003" size="0.02 0.60 0.003" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.85 0.3 0.2 1"/>
+    <geom name="rumble_2" type="box" pos="-0.25 -2.0 0.003" size="0.02 0.60 0.003" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.85 0.3 0.2 1"/>
+
+    <!-- Lateral Banked Camber Wedge (Roll Tilt 3.4 deg) at X in [0.3, 1.7] -->
+    <geom name="banked_wedge" type="box" pos="1.0 -2.0 0.015" size="0.70 0.50 0.006" euler="0.06 0 0" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.45 0.35 0.55 1"/>
+  </worldbody>
+</mujocoinclude>

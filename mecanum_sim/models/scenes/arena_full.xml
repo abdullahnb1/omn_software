@@ -1,0 +1,42 @@
+<mujocoinclude>
+  <worldbody>
+    <light diffuse=".8 .8 .8" pos="0 0 5" dir="0 0 -1" castshadow="true"/>
+    <geom name="floor" type="plane" size="4.0 4.0 0.1" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" material="grid_mat"/>
+
+    <!-- Perimeter Boundary Walls (8x8m) -->
+    <geom name="wall_n" type="box" pos="0 4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_s" type="box" pos="0 -4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_e" type="box" pos="4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_w" type="box" pos="-4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+
+    <!-- Interior Partition Wall with 800mm Doorway -->
+    <geom name="partition_left" type="box" pos="0 2.20 0.25" size="0.04 1.80 0.25" contype="1" conaffinity="1" rgba="0.6 0.65 0.7 0.8"/>
+    <geom name="partition_right" type="box" pos="0 -2.20 0.25" size="0.04 1.80 0.25" contype="1" conaffinity="1" rgba="0.6 0.65 0.7 0.8"/>
+
+    <!-- 8mm Doorway Threshold -->
+    <geom name="door_threshold_core" type="box" pos="0 0 0.004" size="0.015 0.40 0.004" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+    <geom name="door_threshold_ramp_e" type="cylinder" zaxis="0 1 0" pos="0.015 0 0.004" size="0.004 0.40" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+    <geom name="door_threshold_ramp_w" type="cylinder" zaxis="0 1 0" pos="-0.015 0 0.004" size="0.004 0.40" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+
+    <!-- 5mm Open-Arena Threshold at (-1.5, 2.0) -->
+    <geom name="open_threshold_core" type="box" pos="-1.5 2.0 0.0025" size="0.50 0.015 0.0025" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.85 0.5 0.15 1"/>
+    <geom name="open_threshold_ramp_n" type="cylinder" zaxis="1 0 0" pos="-1.5 2.015 0.0025" size="0.0025 0.50" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.85 0.5 0.15 1"/>
+    <geom name="open_threshold_ramp_s" type="cylinder" zaxis="1 0 0" pos="-1.5 1.985 0.0025" size="0.0025 0.50" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.85 0.5 0.15 1"/>
+
+    <!-- Cylindrical Pillars (radius 0.15m, height 1.0m) -->
+    <geom name="pillar_left" type="cylinder" pos="2.2 2.0 0.50" size="0.15 0.50" contype="1" conaffinity="1" rgba="0.4 0.45 0.5 1"/>
+    <geom name="pillar_right" type="cylinder" pos="2.2 -2.0 0.50" size="0.15 0.50" contype="1" conaffinity="1" rgba="0.4 0.45 0.5 1"/>
+
+    <!-- Modular Crates -->
+    <geom name="crate_1" type="box" pos="-2.5 2.0 0.20" size="0.25 0.25 0.20" contype="1" conaffinity="1" rgba="0.75 0.65 0.5 1"/>
+    <geom name="crate_2" type="box" pos="-2.5 -2.0 0.20" size="0.25 0.25 0.20" contype="1" conaffinity="1" rgba="0.75 0.65 0.5 1"/>
+    <geom name="crate_3" type="box" pos="2.5 0.85 0.20" size="0.20 0.20 0.20" contype="1" conaffinity="1" rgba="0.75 0.65 0.5 1"/>
+    <geom name="crate_4" type="box" pos="2.5 -0.85 0.20" size="0.20 0.20 0.20" contype="1" conaffinity="1" rgba="0.75 0.65 0.5 1"/>
+
+    <!-- Low-Profile Floor Cable Protectors (5mm radius) -->
+    <geom name="cable_1" type="capsule" fromto="-0.8 1.0 0.005 -0.8 2.5 0.005" size="0.005" contype="1" conaffinity="1" condim="3" rgba="0.2 0.2 0.2 1"/>
+    <geom name="cable_2" type="capsule" fromto="-0.8 -2.5 0.005 -0.8 -1.0 0.005" size="0.005" contype="1" conaffinity="1" condim="3" rgba="0.2 0.2 0.2 1"/>
+    <geom name="cable_3" type="capsule" fromto="1.2 1.5 0.005 1.2 3.0 0.005" size="0.005" contype="1" conaffinity="1" condim="3" rgba="0.2 0.2 0.2 1"/>
+    <geom name="cable_4" type="capsule" fromto="1.2 -3.0 0.005 1.2 -1.5 0.005" size="0.005" contype="1" conaffinity="1" condim="3" rgba="0.2 0.2 0.2 1"/>
+  </worldbody>
+</mujocoinclude>

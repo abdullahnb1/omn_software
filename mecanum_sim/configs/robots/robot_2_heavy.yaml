@@ -1,0 +1,62 @@
+name: "robot_2_heavy"
+aliases:
+  - "2"
+  - "heavy"
+  - "robot_2_heavy"
+description: "Heavy-duty 12-roller logistics payload carrier"
+
+chassis:
+  length: 0.58
+  width: 0.42
+  height: 0.11
+  base_thickness: 0.06
+  axle_height: 0.080
+  underbelly_clearance: 0.050
+  mass: 16.0
+  com: [0.0, 0.0, 0.03]
+  color: [0.22, 0.24, 0.27, 1.0]
+
+wheels:
+  radius: 0.080
+  width: 0.055
+  lx: 0.22
+  ly: 0.18
+  assembly_mass: 1.20
+  num_rollers: 12
+  roller_radius: 0.014
+  roller_mass: 0.020
+  roller_color: [0.95, 0.50, 0.10, 1.0]
+  damping: 0.015
+  armature: 0.008
+  roller_damping: 0.0002
+  roller_armature: 0.00005
+
+actuator:
+  type: "velocity"
+  kv: 2.50
+  max_torque: 10.0
+  max_speed: 25.0
+  max_alpha: 35.0
+
+limits:
+  nominal_speed: 0.35
+  max_vx: 0.70
+  max_vy: 0.70
+  max_wz: 1.20
+  max_ax: 1.00
+  max_ay: 1.00
+  max_awz: 2.00
+
+control:
+  kp: 0.05
+  ki: 0.50
+  kd: 0.0
+  pose_kp_x: 2.5
+  pose_kp_y: 2.5
+  pose_kp_theta: 2.0
+
+payload:
+  max_mass: 30.0
+  default_mass: 0.0
+  deck_pos: [0.0, 0.0, 0.09]
+

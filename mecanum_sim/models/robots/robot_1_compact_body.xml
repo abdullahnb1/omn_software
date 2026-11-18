@@ -1,0 +1,270 @@
+<mujocoinclude>
+  <default>
+    <default class="visual_only">
+      <geom contype="0" conaffinity="0" group="1"/>
+    </default>
+    <default class="roller_geom">
+      <geom contype="2" conaffinity="1" condim="3" solref="0.004 1" solimp="0.9 0.95 0.001" friction="0.8 0.005 0.0001"/>
+    </default>
+  </default>
+
+  <worldbody>
+    <body name="base_link" pos="0 0 0.0500">
+      <freejoint name="root_joint"/>
+      <site name="chassis_center" pos="0 0 0" size="0.01" rgba="0 1 0 0.5"/>
+      <site name="imu_site" pos="0 0 0.0200" size="0.01" rgba="1 0 0 0.5"/>
+
+      <!-- Cameras (REP-103 Upright Orientation: xyaxes="0 -1 0 0 0 1") -->
+      <camera name="front_camera" pos="0.1900 0 0.1000" xyaxes="0 -1 0 0 0 1" fovy="75"/>
+      <camera name="track_camera" mode="trackcom" pos="-1.30 -0.60 0.95" xyaxes="0.42 -0.91 0 0.52 0.24 0.82" fovy="60"/>
+
+      <!-- Chassis Structural Geoms -->
+      <geom name="chassis_col_geom" type="box" pos="0 0 0.0150" size="0.1700 0.0905 0.0350" mass="5.000" contype="1" conaffinity="1" rgba="0.2000 0.3500 0.6500 1.0000"/>
+      <geom name="chassis_top_plate" class="visual_only" type="box" pos="0 0 0.0500" size="0.1800 0.1600 0.003" rgba="0.15 0.15 0.18 1"/>
+
+      <!-- Wheel: FL -->
+      <body name="fl_wheel" pos="0.1200 0.1200 0.0000">
+        <joint name="fl_wheel_joint" type="hinge" axis="0 1 0" damping="0.00500" armature="0.00200"/>
+        <!-- Wheel Hub Visual Cylinder -->
+        <geom name="fl_hub" class="visual_only" type="cylinder" size="0.0360 0.0147" zaxis="0 1 0" mass="0.100" rgba="0.30 0.32 0.35 1"/>
+        <body name="fl_r0" pos="0.000000 0.000000 0.038000">
+          <joint name="fl_r0_j" type="hinge" axis="0.707107 0.707107 -0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.004455 -0.004455 0.000000 0.004455 0.004455 -0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.009899 -0.009899 0.000000 -0.003712 -0.003712 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003712 0.003712 -0.000000 0.009899 0.009899 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r1" pos="0.026870 0.000000 0.026870">
+          <joint name="fl_r1_j" type="hinge" axis="0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 0.003150 0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 0.007000 -0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 -0.002625 0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r2" pos="0.038000 0.000000 0.000000">
+          <joint name="fl_r2_j" type="hinge" axis="0.000000 0.707107 -0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.004455 0.004455 0.000000 0.004455 -0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.009899 0.009899 -0.000000 -0.003712 0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 0.003712 -0.003712 0.000000 0.009899 -0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r3" pos="0.026870 0.000000 -0.026870">
+          <joint name="fl_r3_j" type="hinge" axis="-0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 0.003150 -0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 0.007000 0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 -0.002625 -0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r4" pos="0.000000 0.000000 -0.038000">
+          <joint name="fl_r4_j" type="hinge" axis="-0.707107 0.707107 -0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.004455 -0.004455 0.000000 -0.004455 0.004455 -0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.009899 -0.009899 0.000000 0.003712 -0.003712 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003712 0.003712 -0.000000 -0.009899 0.009899 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r5" pos="-0.026870 0.000000 -0.026870">
+          <joint name="fl_r5_j" type="hinge" axis="-0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 -0.003150 -0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 -0.007000 0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 0.002625 -0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r6" pos="-0.038000 0.000000 -0.000000">
+          <joint name="fl_r6_j" type="hinge" axis="-0.000000 0.707107 0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.004455 -0.004455 -0.000000 0.004455 0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.009899 -0.009899 0.000000 -0.003712 -0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 0.003712 0.003712 -0.000000 0.009899 0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fl_r7" pos="-0.026870 0.000000 0.026870">
+          <joint name="fl_r7_j" type="hinge" axis="0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 -0.003150 0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 -0.007000 -0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 0.002625 0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+      </body>
+
+      <!-- Wheel: FR -->
+      <body name="fr_wheel" pos="0.1200 -0.1200 0.0000">
+        <joint name="fr_wheel_joint" type="hinge" axis="0 1 0" damping="0.00500" armature="0.00200"/>
+        <!-- Wheel Hub Visual Cylinder -->
+        <geom name="fr_hub" class="visual_only" type="cylinder" size="0.0360 0.0147" zaxis="0 1 0" mass="0.100" rgba="0.30 0.32 0.35 1"/>
+        <body name="fr_r0" pos="0.000000 0.000000 0.038000">
+          <joint name="fr_r0_j" type="hinge" axis="-0.707107 0.707107 0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.004455 -0.004455 -0.000000 -0.004455 0.004455 0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.009899 -0.009899 -0.000000 0.003712 -0.003712 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003712 0.003712 0.000000 -0.009899 0.009899 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r1" pos="0.026870 0.000000 0.026870">
+          <joint name="fr_r1_j" type="hinge" axis="-0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 -0.003150 -0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 -0.007000 0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 0.002625 -0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r2" pos="0.038000 0.000000 0.000000">
+          <joint name="fr_r2_j" type="hinge" axis="-0.000000 0.707107 0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.004455 -0.004455 -0.000000 0.004455 0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.009899 -0.009899 0.000000 -0.003712 -0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 0.003712 0.003712 -0.000000 0.009899 0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r3" pos="0.026870 0.000000 -0.026870">
+          <joint name="fr_r3_j" type="hinge" axis="0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 -0.003150 0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 -0.007000 -0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 0.002625 0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r4" pos="0.000000 0.000000 -0.038000">
+          <joint name="fr_r4_j" type="hinge" axis="0.707107 0.707107 0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.004455 -0.004455 -0.000000 0.004455 0.004455 0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.009899 -0.009899 -0.000000 -0.003712 -0.003712 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003712 0.003712 0.000000 0.009899 0.009899 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r5" pos="-0.026870 0.000000 -0.026870">
+          <joint name="fr_r5_j" type="hinge" axis="0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 0.003150 0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 0.007000 -0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 -0.002625 0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r6" pos="-0.038000 0.000000 -0.000000">
+          <joint name="fr_r6_j" type="hinge" axis="0.000000 0.707107 -0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.004455 0.004455 0.000000 0.004455 -0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.009899 0.009899 -0.000000 -0.003712 0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 0.003712 -0.003712 0.000000 0.009899 -0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="fr_r7" pos="-0.026870 0.000000 0.026870">
+          <joint name="fr_r7_j" type="hinge" axis="-0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 0.003150 -0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 0.007000 0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 -0.002625 -0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+      </body>
+
+      <!-- Wheel: RL -->
+      <body name="rl_wheel" pos="-0.1200 0.1200 0.0000">
+        <joint name="rl_wheel_joint" type="hinge" axis="0 1 0" damping="0.00500" armature="0.00200"/>
+        <!-- Wheel Hub Visual Cylinder -->
+        <geom name="rl_hub" class="visual_only" type="cylinder" size="0.0360 0.0147" zaxis="0 1 0" mass="0.100" rgba="0.30 0.32 0.35 1"/>
+        <body name="rl_r0" pos="0.000000 0.000000 0.038000">
+          <joint name="rl_r0_j" type="hinge" axis="-0.707107 0.707107 0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.004455 -0.004455 -0.000000 -0.004455 0.004455 0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.009899 -0.009899 -0.000000 0.003712 -0.003712 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003712 0.003712 0.000000 -0.009899 0.009899 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r1" pos="0.026870 0.000000 0.026870">
+          <joint name="rl_r1_j" type="hinge" axis="-0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 -0.003150 -0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 -0.007000 0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 0.002625 -0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r2" pos="0.038000 0.000000 0.000000">
+          <joint name="rl_r2_j" type="hinge" axis="-0.000000 0.707107 0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.004455 -0.004455 -0.000000 0.004455 0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.009899 -0.009899 0.000000 -0.003712 -0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 0.003712 0.003712 -0.000000 0.009899 0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r3" pos="0.026870 0.000000 -0.026870">
+          <joint name="rl_r3_j" type="hinge" axis="0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 -0.003150 0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 -0.007000 -0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 0.002625 0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r4" pos="0.000000 0.000000 -0.038000">
+          <joint name="rl_r4_j" type="hinge" axis="0.707107 0.707107 0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.004455 -0.004455 -0.000000 0.004455 0.004455 0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.009899 -0.009899 -0.000000 -0.003712 -0.003712 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003712 0.003712 0.000000 0.009899 0.009899 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r5" pos="-0.026870 0.000000 -0.026870">
+          <joint name="rl_r5_j" type="hinge" axis="0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 0.003150 0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 0.007000 -0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 -0.002625 0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r6" pos="-0.038000 0.000000 -0.000000">
+          <joint name="rl_r6_j" type="hinge" axis="0.000000 0.707107 -0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.004455 0.004455 0.000000 0.004455 -0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.009899 0.009899 -0.000000 -0.003712 0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 0.003712 -0.003712 0.000000 0.009899 -0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rl_r7" pos="-0.026870 0.000000 0.026870">
+          <joint name="rl_r7_j" type="hinge" axis="-0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 0.003150 -0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 0.007000 0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 -0.002625 -0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+      </body>
+
+      <!-- Wheel: RR -->
+      <body name="rr_wheel" pos="-0.1200 -0.1200 0.0000">
+        <joint name="rr_wheel_joint" type="hinge" axis="0 1 0" damping="0.00500" armature="0.00200"/>
+        <!-- Wheel Hub Visual Cylinder -->
+        <geom name="rr_hub" class="visual_only" type="cylinder" size="0.0360 0.0147" zaxis="0 1 0" mass="0.100" rgba="0.30 0.32 0.35 1"/>
+        <body name="rr_r0" pos="0.000000 0.000000 0.038000">
+          <joint name="rr_r0_j" type="hinge" axis="0.707107 0.707107 -0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.004455 -0.004455 0.000000 0.004455 0.004455 -0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.009899 -0.009899 0.000000 -0.003712 -0.003712 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003712 0.003712 -0.000000 0.009899 0.009899 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r1" pos="0.026870 0.000000 0.026870">
+          <joint name="rr_r1_j" type="hinge" axis="0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 0.003150 0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 0.007000 -0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 -0.002625 0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r2" pos="0.038000 0.000000 0.000000">
+          <joint name="rr_r2_j" type="hinge" axis="0.000000 0.707107 -0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.004455 0.004455 0.000000 0.004455 -0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 -0.009899 0.009899 -0.000000 -0.003712 0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 0.003712 -0.003712 0.000000 0.009899 -0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r3" pos="0.026870 0.000000 -0.026870">
+          <joint name="rr_r3_j" type="hinge" axis="-0.500000 0.707107 -0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 0.003150 -0.003150 0.004455 -0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 0.007000 0.002625 -0.003712 0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 -0.002625 -0.007000 0.009899 -0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r4" pos="0.000000 0.000000 -0.038000">
+          <joint name="rr_r4_j" type="hinge" axis="-0.707107 0.707107 -0.000000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.004455 -0.004455 0.000000 -0.004455 0.004455 -0.000000" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.009899 -0.009899 0.000000 0.003712 -0.003712 0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003712 0.003712 -0.000000 -0.009899 0.009899 -0.000000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r5" pos="-0.026870 0.000000 -0.026870">
+          <joint name="rr_r5_j" type="hinge" axis="-0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.003150 -0.004455 -0.003150 -0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.007000 -0.009899 -0.007000 0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.002625 0.003712 0.002625 -0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r6" pos="-0.038000 0.000000 -0.000000">
+          <joint name="rr_r6_j" type="hinge" axis="-0.000000 0.707107 0.707107" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.004455 -0.004455 -0.000000 0.004455 0.004455" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.000000 -0.009899 -0.009899 0.000000 -0.003712 -0.003712" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.000000 0.003712 0.003712 -0.000000 0.009899 0.009899" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+        <body name="rr_r7" pos="-0.026870 0.000000 0.026870">
+          <joint name="rr_r7_j" type="hinge" axis="0.500000 0.707107 0.500000" damping="0.000100" armature="0.000020"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.003150 -0.004455 -0.003150 0.003150 0.004455 0.003150" size="0.012000" mass="0.00937" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="-0.007000 -0.009899 -0.007000 -0.002625 -0.003712 -0.002625" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+          <geom class="roller_geom" type="capsule" fromto="0.002625 0.003712 0.002625 0.007000 0.009899 0.007000" size="0.010560" mass="0.00469" rgba="0.8500 0.2500 0.2000 1.0000"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <velocity name="fl_actuator" joint="fl_wheel_joint" kv="0.8000" ctrllimited="true" ctrlrange="-35.00 35.00" forcelimited="true" forcerange="-2.50 2.50"/>
+    <velocity name="fr_actuator" joint="fr_wheel_joint" kv="0.8000" ctrllimited="true" ctrlrange="-35.00 35.00" forcelimited="true" forcerange="-2.50 2.50"/>
+    <velocity name="rl_actuator" joint="rl_wheel_joint" kv="0.8000" ctrllimited="true" ctrlrange="-35.00 35.00" forcelimited="true" forcerange="-2.50 2.50"/>
+    <velocity name="rr_actuator" joint="rr_wheel_joint" kv="0.8000" ctrllimited="true" ctrlrange="-35.00 35.00" forcelimited="true" forcerange="-2.50 2.50"/>
+  </actuator>
+
+  <sensor>
+    <actuatorfrc name="fl_torque" actuator="fl_actuator"/>
+    <actuatorfrc name="fr_torque" actuator="fr_actuator"/>
+    <actuatorfrc name="rl_torque" actuator="rl_actuator"/>
+    <actuatorfrc name="rr_torque" actuator="rr_actuator"/>
+    <jointpos name="fl_pos" joint="fl_wheel_joint"/>
+    <jointpos name="fr_pos" joint="fr_wheel_joint"/>
+    <jointpos name="rl_pos" joint="rl_wheel_joint"/>
+    <jointpos name="rr_pos" joint="rr_wheel_joint"/>
+    <jointvel name="fl_vel" joint="fl_wheel_joint"/>
+    <jointvel name="fr_vel" joint="fr_wheel_joint"/>
+    <jointvel name="rl_vel" joint="rl_wheel_joint"/>
+    <jointvel name="rr_vel" joint="rr_wheel_joint"/>
+    <accelerometer name="imu_accel" site="imu_site"/>
+    <gyro name="imu_gyro" site="imu_site"/>
+  </sensor>
+</mujocoinclude>

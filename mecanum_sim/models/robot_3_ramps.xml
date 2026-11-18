@@ -1,0 +1,18 @@
+<mujoco model="robot_3_custom_ramps">
+  <compiler angle="radian"/>
+  <option timestep="0.0020" gravity="0 0 -9.81" integrator="implicitfast" solver="Newton" cone="elliptic" impratio="10" iterations="60" tolerance="1e-8"/>
+
+  <visual>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.8 0.8 0.8" specular="0.1 0.1 0.1"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1="0.20 0.22 0.25" rgb2="0.30 0.33 0.36"/>
+    <material name="grid_mat" texture="grid" texrepeat="8 8" reflectance="0.1"/>
+  </asset>
+
+  <include file="scenes/arena_ramps.xml"/>
+  <include file="robots/robot_3_custom_body.xml"/>
+</mujoco>

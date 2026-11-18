@@ -1,0 +1,62 @@
+name: "robot_1_compact"
+aliases:
+  - "1"
+  - "compact"
+  - "robot_1_compact"
+description: "Compact 8-roller educational / domestic mobile robot"
+
+chassis:
+  length: 0.36
+  width: 0.32
+  height: 0.08
+  base_thickness: 0.04
+  axle_height: 0.050
+  underbelly_clearance: 0.030
+  mass: 5.0
+  com: [0.0, 0.0, 0.02]
+  color: [0.20, 0.35, 0.65, 1.0]
+
+wheels:
+  radius: 0.050
+  width: 0.035
+  lx: 0.12
+  ly: 0.12
+  assembly_mass: 0.25
+  num_rollers: 8
+  roller_radius: 0.012
+  roller_mass: 0.012
+  roller_color: [0.85, 0.25, 0.20, 1.0]
+  damping: 0.005
+  armature: 0.002
+  roller_damping: 0.0001
+  roller_armature: 0.00002
+
+actuator:
+  type: "velocity"
+  kv: 0.80
+  max_torque: 2.5
+  max_speed: 35.0
+  max_alpha: 60.0
+
+limits:
+  nominal_speed: 0.40
+  max_vx: 0.80
+  max_vy: 0.80
+  max_wz: 1.50
+  max_ax: 1.50
+  max_ay: 1.50
+  max_awz: 3.00
+
+control:
+  kp: 0.05
+  ki: 0.40
+  kd: 0.0
+  pose_kp_x: 2.5
+  pose_kp_y: 2.5
+  pose_kp_theta: 2.0
+
+payload:
+  max_mass: 20.0
+  default_mass: 0.0
+  deck_pos: [0.0, 0.0, 0.06]
+

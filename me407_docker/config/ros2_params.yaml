@@ -1,0 +1,33 @@
+# ==============================================================================
+# ME407 Modular Omniwheel Autonomous Mobile Robot - ROS 2 Node Parameters
+# Mounted inside the container at: /site_config/ros2_params.yaml
+# ==============================================================================
+
+/**:
+  ros__parameters:
+    use_sim_time: true
+
+me407_omni_controller:
+  ros__parameters:
+    use_sim_time: true
+    # Robot Physical Geometry (ME407 Specifications)
+    chassis_outer_diameter_m: 0.420
+    chassis_height_m: 0.200
+    wheel_radius_m: 0.050
+    base_radius_m: 0.180
+    drive_configuration: "3_wheel_120_deg"  # Options: "3_wheel_120_deg" or "4_wheel_omni"
+    payload_mass_kg: 3.0
+
+    # Holonomic Planar Velocity & Acceleration Limits (Spill-Resistant Profile)
+    max_linear_velocity_xy_mps: 0.80
+    nominal_cruising_velocity_mps: 0.40
+    max_angular_velocity_z_radps: 2.00
+    max_linear_accel_mps2: 0.50
+    max_angular_accel_radps2: 1.50
+
+    # Control Loop & TF Frames
+    control_frequency_hz: 100.0
+    odom_frame_id: "odom"
+    base_frame_id: "base_link"
+    publish_odom_tf: true
+    cmd_vel_timeout_sec: 0.25

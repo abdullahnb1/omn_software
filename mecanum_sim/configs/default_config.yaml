@@ -1,0 +1,29 @@
+default_robot: "robot_1_compact"
+default_arena: "auto"
+
+simulation:
+  physics_timestep: 0.002   # 500 Hz
+  control_timestep: 0.010   # 100 Hz
+  default_duration: 10.0
+  floor_friction: 0.8
+  impratio: 10.0
+  solver: "Newton"
+  cone: "elliptic"
+  iterations: 60
+  tolerance: 1e-8
+
+arena:
+  size_x: 8.0
+  size_y: 8.0
+  wall_height: 0.50
+  wall_thickness: 0.08
+  doorway_width: 0.80
+  doorway_threshold_height: 0.008
+  open_threshold_height: 0.005
+
+rendering:
+  video_fps: 30
+  pip_width: 240
+  pip_height: 180
+  pip_fps: 15
+

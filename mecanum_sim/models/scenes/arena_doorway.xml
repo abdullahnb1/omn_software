@@ -1,0 +1,21 @@
+<mujocoinclude>
+  <worldbody>
+    <light diffuse=".8 .8 .8" pos="0 0 5" dir="0 0 -1" castshadow="true"/>
+    <geom name="floor" type="plane" size="4.0 4.0 0.1" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" material="grid_mat"/>
+
+    <!-- Perimeter Boundary Walls (8x8m) -->
+    <geom name="wall_n" type="box" pos="0 4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_s" type="box" pos="0 -4.0 0.25" size="4.0 0.04 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_e" type="box" pos="4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+    <geom name="wall_w" type="box" pos="-4.0 0 0.25" size="0.04 4.0 0.25" contype="1" conaffinity="1" rgba="0.5 0.55 0.6 0.6"/>
+
+    <!-- Interior Partition Wall at X=0 with 800mm Doorway (Y in [-0.40, +0.40]) -->
+    <geom name="partition_left" type="box" pos="0 2.20 0.25" size="0.04 1.80 0.25" contype="1" conaffinity="1" rgba="0.6 0.65 0.7 0.8"/>
+    <geom name="partition_right" type="box" pos="0 -2.20 0.25" size="0.04 1.80 0.25" contype="1" conaffinity="1" rgba="0.6 0.65 0.7 0.8"/>
+
+    <!-- 8mm Beveled Doorway Ground Threshold (Z=0.008m total height) -->
+    <geom name="door_threshold_core" type="box" pos="0 0 0.004" size="0.015 0.40 0.004" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+    <geom name="door_threshold_ramp_e" type="cylinder" zaxis="0 1 0" pos="0.015 0 0.004" size="0.004 0.40" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+    <geom name="door_threshold_ramp_w" type="cylinder" zaxis="0 1 0" pos="-0.015 0 0.004" size="0.004 0.40" contype="1" conaffinity="1" condim="3" friction="0.800 0.005 0.0001" rgba="0.9 0.6 0.1 1"/>
+  </worldbody>
+</mujocoinclude>

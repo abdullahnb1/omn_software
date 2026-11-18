@@ -1,0 +1,39 @@
+services:
+  ros2_mujoco:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: me407_ros2_mujoco:humble
+    container_name: me407_ros2_mujoco
+    hostname: me407-docker
+    network_mode: host
+    ipc: host
+    privileged: true
+    stdin_open: true
+    tty: true
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=${XAUTHORITY:-/root/.Xauthority}
+      - ROS_DOMAIN_ID=${ROS_DOMAIN_ID:-42}
+      - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+      - MUJOCO_GL=glfw
+      - SITE_CONFIG_DIR=/site_config
+      - SSH_AUTH_SOCK=${SSH_AUTH_SOCK:-}
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      # X11 socket for RViz2 and MuJoCo GUI rendering
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # Full ME407 repo mounted at identical path so Git submodule relative paths (.git/modules/6-Software) work natively
+      - /home/nacib/Desktop/ME407:/home/nacib/Desktop/ME407:rw
+      # Persistent colcon workspace (build, install, log) while /ros2_ws/src links to ME407/6-Software
+      - ./workspace:/ros2_ws:rw
+      # Live-shared YAML configuration files
+      - ./config:/site_config:rw
+      # Host SSH keys & Git identity so git clone / pull / push work seamlessly inside Docker
+      - /home/nacib/.ssh:/root/.ssh:ro
+      - /home/nacib/.gitconfig:/etc/gitconfig:ro
+      - ${SSH_AUTH_SOCK:-/tmp}:/ssh-agent
+    working_dir: /ros2_ws
+    command: bash

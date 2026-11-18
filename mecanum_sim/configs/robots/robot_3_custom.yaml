@@ -1,0 +1,62 @@
+name: "robot_3_custom"
+aliases:
+  - "3"
+  - "custom"
+  - "robot_3_custom"
+description: "Agile medium-weight service and inspection mecanum AMR"
+
+chassis:
+  length: 0.46
+  width: 0.26
+  height: 0.09
+  base_thickness: 0.05
+  axle_height: 0.065
+  underbelly_clearance: 0.040
+  mass: 9.60
+  com: [0.0, 0.0, 0.025]
+  color: [0.10, 0.55, 0.45, 1.0]
+
+wheels:
+  radius: 0.065
+  width: 0.045
+  lx: 0.17
+  ly: 0.15
+  assembly_mass: 0.60
+  num_rollers: 10
+  roller_radius: 0.013
+  roller_mass: 0.015
+  roller_color: [0.95, 0.70, 0.15, 1.0]
+  damping: 0.010
+  armature: 0.005
+  roller_damping: 0.00015
+  roller_armature: 0.00003
+
+actuator:
+  type: "velocity"
+  kv: 1.60
+  max_torque: 6.0
+  max_speed: 30.0
+  max_alpha: 45.0
+
+limits:
+  nominal_speed: 0.38
+  max_vx: 0.75
+  max_vy: 0.75
+  max_wz: 1.35
+  max_ax: 1.25
+  max_ay: 1.25
+  max_awz: 2.50
+
+control:
+  kp: 0.05
+  ki: 0.45
+  kd: 0.0
+  pose_kp_x: 2.5
+  pose_kp_y: 2.5
+  pose_kp_theta: 2.0
+
+payload:
+  max_mass: 25.0
+  default_mass: 0.0
+  deck_pos: [0.0, 0.0, 0.075]
+
